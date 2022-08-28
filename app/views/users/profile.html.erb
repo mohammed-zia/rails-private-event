@@ -1,8 +1,29 @@
 <h1>User Profile</h1>
 
-<p>Welcome <% @user %> </p>
-<div id="created_events">
-  <% @events.each do |event| %>
-    <%= render event %>
-  <% end %>
-</div>
+<p>Welcome <%= @user.email %> </p>
+
+<% if @user.created_events.any? %>
+  <p>Events you've created:</p>
+  <div id="created_events">
+    <% @events.each do |event| %>
+      <%= render event %>
+    <% end %>
+  </div>
+<% else %>
+  <p>You haven't created an event yet.</p>
+  <%= button_to "Create an event", new_event_path, method: :get %>
+<% end %>
+
+<% if @user.attended_events.any? %>
+  <p>Events you're attending:</p>
+  <div id="attended_events">
+    <% @user.attended_events.each do |event| %>
+      <%= render event %>
+    <% end %>
+  </div>
+<% else %>
+  <p>You're not attending any events yet.</p>
+  <%= button_to "View events", root_path, method: :get %>
+<% end %>
+
+<%= button_to "Home", root_path, method: :get%>
