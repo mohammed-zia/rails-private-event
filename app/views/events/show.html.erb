@@ -6,4 +6,18 @@
 
 <p><%= @event.date %></p>
 
+<% if @event.attendees.any? %>
+  <p>Attendees:</p>
+  <% @event.attendees.each do |attendee| %>
+    <%= attendee.email %>
+  <% end %>
+<% end %>
+
 <p><%= link_to "Home", root_path %></p>
+
+<%= button_to "Attend this event", ticket_event_path, method: :get %>
+
+<% if @event.attendees.include?(current_user) %>
+  <%= button_to "Can't attend", delete_ticket_event_path, method: :get %>
+<% end %>
+

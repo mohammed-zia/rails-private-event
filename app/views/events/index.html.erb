@@ -4,5 +4,6 @@
 <div id="events">
   <% @events.each do |event| %>
     <%= render event %>
+    <%= link_to "Learn more", event %>
   <% end %>
 </div>
