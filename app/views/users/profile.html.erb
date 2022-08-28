@@ -1,0 +1,8 @@
+<h1>User Profile</h1>
+
+<p>Welcome <% @user %> </p>
+<div id="created_events">
+  <% @events.each do |event| %>
+    <%= render event %>
+  <% end %>
+</div>
